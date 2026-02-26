@@ -1,5 +1,8 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
+const express = require('express'); // Importa express
+
+const app = express(); // Cria app express
 
 const client = new Client({
   intents: [
@@ -46,6 +49,15 @@ client.on("messageCreate", (message) => {
 
     message.channel.send(`✅ Jogo atualizado para: ${novoJogo}`);
   }
+});
+
+// Servidor Express necessário para Render
+app.get('/', (req, res) => {
+  res.send('Bot online!');
+});
+
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Servidor Express rodando');
 });
 
 client.login(process.env.TOKEN);

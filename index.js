@@ -1,8 +1,8 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits } = require('discord.js');
-const express = require('express'); // Importa express
+const express = require('express');
 
-const app = express(); // Cria app express
+const app = express();
 
 const client = new Client({
   intents: [
@@ -13,7 +13,7 @@ const client = new Client({
   ]
 });
 
-const MEU_ID = '1426750282905419826SEU_ID_AQUI'; // coloca seu ID aqui
+const MEU_ID = '1426750282905419826';
 const MOD_CARGOS = ["Dono", "Moderador", "Botdelay2"];
 
 let jogoAtual = "Nenhum jogo definido";
@@ -60,4 +60,9 @@ app.listen(process.env.PORT || 3000, () => {
   console.log('Servidor Express rodando');
 });
 
-client.login(process.env.TOKEN);
+// 🔥 LOGIN COM DEBUG
+console.log("Token existe?", !!process.env.TOKEN);
+
+client.login(process.env.TOKEN)
+  .then(() => console.log("Login feito com sucesso"))
+  .catch(err => console.error("Erro ao logar:", err));
